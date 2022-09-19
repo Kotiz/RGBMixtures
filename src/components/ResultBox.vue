@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <!-- text between -->
     <p
       v-text="'And the result...'" />
@@ -8,6 +7,7 @@
     <!-- mixture effect -->
     <!-- <big-mixture-item
       :color="mixtureEffectFill" /> -->
+    <!-- nowy komponent FlaskItem-->
     <flask-item
     :key="index"
     v-for="(mixture, index) in mixtures"
@@ -16,12 +16,13 @@
 
     <!-- refresh btn -->
     <button-item
+      :text="test"
       @click="$emit('refresh')"
       :size="4"
       :movement="-0.5"
-      :font-size="1.5"
-      icon="sync"
-      class="refresh-btn" />
+      :font-size="0.9"
+      icon="pi pi-refresh"
+      class="refresh-btn">RESET</button-item>
   </div>
 </template>
 

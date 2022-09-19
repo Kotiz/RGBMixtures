@@ -4,7 +4,12 @@
   :style="btnStyles"
   class="btn">
     <span
-      class="fas fa-${ icon }" />
+      v-if="icon"
+      :class="`${iconSet} ${icon}`" />
+    <span
+      v-if="text"
+      v-text="text" />
+      <slot></slot>
   </button>
 </template>
 <script>
@@ -12,8 +17,7 @@ export default {
   name: 'ButtonItem',
   props: {
     icon: {
-      type: String,
-      required: true
+      type: String
     },
     size: {
       type: Number,
@@ -26,6 +30,13 @@ export default {
     movement: {
       type: Number,
       default: 0.5
+    },
+    iconSet: {
+      type: String,
+      default: 'pi pi-sort-alt'
+    },
+    text: {
+      type: String
     }
   },
   computed: {
@@ -33,8 +44,8 @@ export default {
       return {
         width: `${this.size}rem`,
         height: `${this.size}rem`,
-        fontSize: `${this.fontSize}rem`
-        // :movement: `${this.movement}rem`
+        fontSize: `${this.fontSize}rem`,
+        movement: `${this.movement}rem`
       }
     }
   }

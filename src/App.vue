@@ -4,6 +4,7 @@
 
       <!-- header -->
       <app-header />
+      <menu-bar-view-vue class=""/>
 
       <!-- color mixin -->
       <color-mixin />
@@ -16,12 +17,14 @@
 import './styles/global.scss'
 import AppHeader from './components/AppHeader'
 import ColorMixin from './components/ColorMixin'
+import MenuBarViewVue from './components/MenuBarView.vue'
 
 export default {
   name: 'App',
   components: {
     AppHeader,
-    ColorMixin
+    ColorMixin,
+    MenuBarViewVue
   }
 }
 </script>

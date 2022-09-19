@@ -8,7 +8,7 @@
     :amount="mixture.amount"
     @increment="$emit('increment', index)"
     @decrement="$emit('decrement', index)" />
-    </ul>
+    </ul>JESTEM TUTAJ 1
 </template>
 
 <script>
@@ -16,7 +16,7 @@
 import FlaskItem from './shared/FlaskItem.vue'
 
 export default {
-  name: 'Mix-tures',
+  name: 'Mixtures-list',
   props: {
     mixtures: {
       type: Array,
