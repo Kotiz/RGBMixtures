@@ -3,16 +3,14 @@
     <!-- text between -->
     <p
       v-text="'And the result...'" />
-
-    <!-- mixture effect -->
-    <!-- <big-mixture-item
-      :color="mixtureEffectFill" /> -->
     <!-- nowy komponent FlaskItem-->
-    <flask-item
-    :key="index"
-    v-for="(mixture, index) in mixtures"
-    :variant="mixture.variant"
-    :amount="mixture.amount" />
+    <center><flask-item
+      :buttonsVisible="false"
+      :size="15"
+      :amount="100"
+      :color="mixtureEffectFill"/></center>
+
+    <p>value of {{ mixtureEffectFill }}</p>
 
     <!-- refresh btn -->
     <button-item
@@ -22,14 +20,35 @@
       :movement="-0.5"
       :font-size="0.9"
       icon="pi pi-refresh"
-      class="refresh-btn">RESET</button-item>
+      class="refresh-btn" />
+
+      <button-item
+      :text="test"
+      @click="$emit('refresh')"
+      :size="4"
+      :movement="-0.5"
+      :font-size="0.9"
+      icon="pi pi-question"
+      class="refresh-btn" />
+
+      <router-link :to="'color/'+ returnLinkRgb[0] +
+        '/' + returnLinkRgb[1] + '/' + returnLinkRgb[2] ">
+        <button-item
+          :text="test"
+          @click="$emit('')"
+          :size="4"
+          :movement="-0.5"
+          :font-size="0.9"
+          icon="pi pi-share-alt"
+          class="refresh-btn" />
+      </router-link>
   </div>
 </template>
 
 <script>
-// import BigMixtureItem from './BigMixtureItem'
 import ButtonItem from './shared/ButtonItem.vue'
 import FlaskItem from './shared/FlaskItem.vue'
+// import modalMixin from '@/mixin/modalMixin'
 
 export default {
   name: 'ResultsBox',
@@ -42,13 +61,17 @@ export default {
   computed: {
     mixtureEffectFill () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
-      return { 'background-color': `rgb(${redCol}, ${greenCol}, ${blueCol})` }
+      return `rgb(${redCol}, ${greenCol}, ${blueCol})`
+    },
+    returnLinkRgb () {
+      const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
+      return [redCol, greenCol, blueCol]
     }
   },
   components: {
-    // BigMixtureItem, ButtonItem
     ButtonItem, FlaskItem
   }
+  // mixins: [modalMixin]
 }
 </script>
 
@@ -71,5 +94,16 @@ export default {
   &:hover {
     margin-top: -0.5rem;
   }
+}
+.slide-fade-enter-active {
+  transition: opacity .3s;
+}
+
+.slide-fade-enter-from {
+  opacity: 0;
+}
+
+.slide-fade-enter-to {
+  opacity: 1;
 }
 </style>

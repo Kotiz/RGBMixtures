@@ -8,7 +8,7 @@
     :amount="mixture.amount"
     @increment="$emit('increment', index)"
     @decrement="$emit('decrement', index)" />
-    </ul>JESTEM TUTAJ 1
+    </ul>
 </template>
 
 <script>

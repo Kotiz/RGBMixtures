@@ -1,11 +1,11 @@
 <template>
-    <div class="flask" :style="flaskStyle">
+    <div class="flask fadeIn" :style="flaskStyle" ref="anime">
         <!-- decrement btn -->
         <button-item
           v-if="buttonsVisible"
           class="flask__btn flask__btn--left"
           icon="pi pi-sort-down"
-          @click="$emit('decrement')" />
+          @click="animeFlask(); $emit('decrement')" />
         <div
           :class="fillClasses"
           :style="fillStyle" />
@@ -15,7 +15,7 @@
           class="flask__btn flask__btn--right"
           icon="pi pi-sort-up"
           :movement="-0.5"
-          @click="$emit('increment')" />
+          @click="animeFlask(); $emit('increment')" />
     </div>
 </template>
 <script>
@@ -58,6 +58,14 @@ export default {
         style.backgroundColor = this.color || '#fff'
       }
       return style
+    }
+  },
+  methods: {
+    animeFlask () {
+      this.$refs.anime.classList.add('zoomIn')
+      setTimeout(() => {
+        this.$refs.anime.classList.remove('zoomIn')
+      }, 50)
     }
   },
   components: {
@@ -123,5 +131,28 @@ export default {
             left: 1rem;
         }
     }
+}
+.fadeIn {
+  animation-name: 'fadeIn';
+  animation-iteration-count: 1;
+  animation-duration: .3s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1 }
+}
+
+.zoomIn {
+  animation-name: 'zoomIn';
+  animation-iteration-count: 1;
+  animation-duration: .1s;
+}
+
+@keyframes zoomIn {
+  0% {  opacity: 0.9; transform: scale3d(1.1, 1.1, 1.1); }
+  20% { transform: scale3d(1,1,1); }
+  70% {  transform: scale3d(1.1,1.1,1.1); }
+  100% { opacity: 1 }
 }
 </style>
