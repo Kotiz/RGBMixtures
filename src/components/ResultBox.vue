@@ -8,9 +8,9 @@
       :buttonsVisible="false"
       :size="15"
       :amount="100"
-      :color="mixtureEffectFill"/></center>
+      :color="mixtureEffectFill2(mixtures)"/></center>
 
-    <p>value of {{ mixtureEffectFill }}</p>
+    <p>value of {{ mixtureEffectFill2(mixtures) }}</p>
 
     dd {{ mixtures }}
     <!-- refresh btn -->
@@ -76,10 +76,25 @@ export default {
       required: true
     }
   },
+  methods: {
+    // dziala jako method ale nie dziala jako computed :| dlaczego ?
+    mixtureEffectFill2 (mixtures) {
+      const [redCol, greenCol, blueCol] = mixtures.map(item => Math.floor(item.amount * 2.5))
+
+      return `rgb(${redCol}, ${greenCol}, ${blueCol})`
+      // console.log('this.mixtures ------------------------------------- ', this.mixtures)
+      // return this.calculateColour(this.mixtures)
+    }
+
+  },
   computed: {
+
     mixtureEffectFill () {
-      console.log('this.mixtures ------------------------------------- ', this.mixtures)
-      return this.calculateColour(this.mixtures)
+      const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
+
+      return `rgb(${redCol}, ${greenCol}, ${blueCol})`
+      // console.log('this.mixtures ------------------------------------- ', this.mixtures)
+      // return this.calculateColour(this.mixtures)
     },
     returnLinkRgb () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
