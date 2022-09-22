@@ -1,18 +1,17 @@
 <template>
-    <header>
+      <header>
         <h1 class="page-title animate__animated animate__fadeInLeftgit">
-            <slot name="header" />
+          <slot name="header" />
         </h1>
-    </header>
-    <header>
+      </header>
+      <header>
         <h4 class="page-title-small">
-            <slot name="header-small" />
+          <slot name="header-small" />
         </h4>
-    </header>
+      </header>
   </template>
 
 <script>
-import 'animate.css'
 export default {
   name: 'HeaderPage'
 }

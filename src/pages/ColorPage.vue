@@ -6,11 +6,12 @@
         <header-page>
             <template v-slot:header-small>You`ve picked a great color!</template>
         </header-page>
-        <center><flask-item
+        <center>
+          <flask-item
             :buttonsVisible="false"
             :size="15"
             :amount="100"
-            :color="mixtureEffectFill"/></center>
+            :color="calculateColour2()"/></center>
         </div>
         <button-item
           :text="test"
@@ -27,11 +28,49 @@ import FlaskItem from '@/components/shared/FlaskItem.vue'
 import ButtonItem from '@/components/shared/ButtonItem.vue'
 import HeaderPage from '@/components/shared/HeaderPage.vue'
 import InputText from 'primevue/inputtext'
+import modalMixin from '@/mixin/modalMixin'
 
 export default {
   name: 'ColorPage',
   components: {
     FlaskItem, InputText, ButtonItem, HeaderPage
+  },
+  mixins: [modalMixin],
+  data: () => ({
+    mixtures2: [
+      {
+        variant: 'red',
+        amount: 20
+      },
+      {
+        variant: 'green',
+        amount: 70
+      },
+      {
+        variant: 'blue',
+        amount: 40
+      }]
+
+  }),
+  created () {
+    this.mixtures2[0].amount = this.$route.params.red
+    this.mixtures2[1].amount = this.$route.params.green
+    this.mixtures2[2].amount = this.$route.params.blue
+  },
+  methods: {
+    mixtureEffectFill () {
+      return this.calculateColour2(this.mixtures2)
+    },
+    calculateColour2 () {
+      const [redCol, greenCol, blueCol] = this.mixtures2.map(item => Math.floor(item.amount * 2.5))
+
+      const color = `rgb(${redCol}, ${greenCol}, ${blueCol})`
+
+      console.log('calcular 222', color)
+
+      return color
+    }
+
   }
 }
 </script>

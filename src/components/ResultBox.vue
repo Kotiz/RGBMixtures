@@ -12,6 +12,7 @@
 
     <p>value of {{ mixtureEffectFill }}</p>
 
+    dd {{ mixtures }}
     <!-- refresh btn -->
     <button-item
       :text="test"
@@ -24,15 +25,30 @@
 
       <button-item
       :text="test"
-      @click="$emit('refresh')"
+      @click="showModal()"
       :size="4"
       :movement="-0.5"
       :font-size="0.9"
       icon="pi pi-question"
       class="refresh-btn" />
 
-      <router-link :to="'color/'+ returnLinkRgb[0] +
-        '/' + returnLinkRgb[1] + '/' + returnLinkRgb[2] ">
+      <rabarbar-modal-component v-if="modalVisible" @cancel="hideModal()">
+          <template v-slot:header>
+            About the app
+          </template>
+
+          <template v-slot:body>
+            Mix three colors to create the perfect one!
+          </template>
+
+          <template v-slot:footer>
+            <button-item icon="fa-thumbs-up" />
+          </template>
+
+      </rabarbar-modal-component>
+
+      <router-link :to="'color/'+ mixtures[0]['amount'] +
+        '/' + mixtures[1]['amount'] + '/' + mixtures[2]['amount'] ">
         <button-item
           :text="test"
           @click="$emit('')"
@@ -48,10 +64,12 @@
 <script>
 import ButtonItem from './shared/ButtonItem.vue'
 import FlaskItem from './shared/FlaskItem.vue'
-// import modalMixin from '@/mixin/modalMixin'
+import RabarbarModalComponent from '@/components/modals/rabarbar.modal.vue'
+import modalMixin from '@/mixin/modalMixin'
 
 export default {
   name: 'ResultsBox',
+  mixins: [modalMixin],
   props: {
     mixtures: {
       type: Array,
@@ -60,8 +78,8 @@ export default {
   },
   computed: {
     mixtureEffectFill () {
-      const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
-      return `rgb(${redCol}, ${greenCol}, ${blueCol})`
+      console.log('this.mixtures ------------------------------------- ', this.mixtures)
+      return this.calculateColour(this.mixtures)
     },
     returnLinkRgb () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
@@ -69,7 +87,9 @@ export default {
     }
   },
   components: {
-    ButtonItem, FlaskItem
+    RabarbarModalComponent,
+    ButtonItem,
+    FlaskItem
   }
   // mixins: [modalMixin]
 }

@@ -10,6 +10,7 @@ import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.min.css'
 import 'v-animate-css'
+import 'animate.css'
 
 import router from './router'
 

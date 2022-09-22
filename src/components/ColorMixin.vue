@@ -18,29 +18,18 @@
 <script>
 import MixturesList from './MixturesList'
 import ResultBox from './ResultBox'
+import modalMixin from '@/mixin/modalMixin'
 
 export default {
   name: 'ColorMixin',
-  data: () => ({
-    mixtures: [
-      {
-        variant: 'red',
-        amount: 20
-      },
-      {
-        variant: 'green',
-        amount: 70
-      },
-      {
-        variant: 'blue',
-        amount: 40
-      }]
-  }),
+  mixins: [modalMixin],
   methods: {
     increment (index) {
       const mixture = this.mixtures[index]
+      console.log('inc mixture.amount 1', mixture.amount)
       if (mixture.amount === 100) return false
       mixture.amount++
+      console.log('inc mixture.amount 2', mixture.amount)
     },
 
     decrement (index) {

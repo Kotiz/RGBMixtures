@@ -20,8 +20,11 @@
 </template>
 <script>
 import ButtonItem from './ButtonItem.vue'
+import modalMixin from '@/mixin/modalMixin'
+
 export default {
   name: 'FlaskItem',
+  mixins: [modalMixin],
   props: {
     size: {
       type: Number,
@@ -62,9 +65,15 @@ export default {
   },
   methods: {
     animeFlask () {
+      console.log(' ------------------------------------')
+      console.log('animeFlask 1 ')
       this.$refs.anime.classList.add('zoomIn')
+      console.log('animeFlask 2 ')
       setTimeout(() => {
+        console.log('animeFlask 3 ')
+
         this.$refs.anime.classList.remove('zoomIn')
+        console.log('animeFlask 4 ')
       }, 50)
     }
   },
