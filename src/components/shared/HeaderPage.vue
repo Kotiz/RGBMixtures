@@ -1,6 +1,6 @@
 <template>
       <header>
-        <h1 class="page-title animate__animated animate__fadeInLeftgit">
+        <h1 class="page-title animate__animated animate__fadeInLeft">
           <slot name="header" />
         </h1>
       </header>
@@ -18,14 +18,5 @@ export default {
 </script>
 
 <style lang="scss">
-  .page-title {
-    color: #637892;
-    margin: 2rem;
-    font-size: 2rem;
-}
-.page-title-small {
-    color: #637892;
-    margin: 2rem;
-    font-size: 1rem;
-}
+@import '@/styles/variables'
 </style>

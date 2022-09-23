@@ -12,7 +12,6 @@
 
     <p>value of {{ mixtureEffectFill2(mixtures) }}</p>
 
-    dd {{ mixtures }}
     <!-- refresh btn -->
     <button-item
       :text="test"
@@ -32,20 +31,19 @@
       icon="pi pi-question"
       class="refresh-btn" />
 
+      <transition name="slide-fade">
       <rabarbar-modal-component v-if="modalVisible" @cancel="hideModal()">
           <template v-slot:header>
-            About the app
           </template>
 
           <template v-slot:body>
             Mix three colors to create the perfect one!
           </template>
 
-          <template v-slot:footer>
-            <button-item icon="fa-thumbs-up" />
-          </template>
+          <template v-slot:footer />
 
       </rabarbar-modal-component>
+    </transition>
 
       <router-link :to="'color/'+ mixtures[0]['amount'] +
         '/' + mixtures[1]['amount'] + '/' + mixtures[2]['amount'] ">
@@ -88,7 +86,6 @@ export default {
 
   },
   computed: {
-
     mixtureEffectFill () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
 
@@ -110,35 +107,6 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.refresh-btn {
-  background-color: #9a9a9a;
-  background-image: linear-gradient(0deg, #9a9a9a 0%, #e8fdff 100%);
-  width: 4rem;
-  height: 4rem;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  -webkit-box-shadow: 0 20px 40px 0 rgba(107,154,212,.1);
-  box-shadow: 0 20px 40px 0 rgba(107,154,212,.1);
-  transition: .3s;
-  outline: none;
-  font-size: 1.5rem;
-  color: #637892;
-
-  &:hover {
-    margin-top: -0.5rem;
-  }
-}
-.slide-fade-enter-active {
-  transition: opacity .3s;
-}
-
-.slide-fade-enter-from {
-  opacity: 0;
-}
-
-.slide-fade-enter-to {
-  opacity: 1;
-}
+<style lang="scss">
+@import '@/styles/variables'
 </style>

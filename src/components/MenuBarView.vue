@@ -32,10 +32,6 @@ export default {
   }
 }
 </script>
-<style scoped>
-  .menuBar {
-    border-radius: 1rem;
-    box-shadow: 0 20px 40px 0 rgba(107,154,212,.3);
-    overflow: hidden;
-  }
+<style lang="scss">
+@import '@/styles/variables'
 </style>

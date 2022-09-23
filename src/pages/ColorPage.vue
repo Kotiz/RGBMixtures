@@ -21,8 +21,8 @@
           :font-size="0.9"
           icon="pi pi-share-alt" />
     <InputText type="text" v-model="$route.fullPath" />
-  <p @click="$router.go(-1)">go back</p>
-  <p @click="goBack()">go back</p>
+  <!-- <p @click="$router.go(-1)">go back</p>
+  <p @click="goBack()">go back</p> -->
 </template>
 <script>
 import FlaskItem from '@/components/shared/FlaskItem.vue'

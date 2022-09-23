@@ -51,20 +51,6 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-    .btn {
-      background-color: #9a9a9a;
-      background-image: linear-gradient(0deg, #9a9a9a 0%, #e8fdff 100%);
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 20px 40px 0 rgba(107,154,212,.1);
-      transition: .3s;
-      outline: none;
-      font-size: 1.5rem;
-      color: #637892;
-       &:hover {
-        margin-top: var(--movement);
-       }
-    }
-    </style>
+<style lang="scss">
+@import '@/styles/variables'
+</style>

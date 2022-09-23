@@ -14,7 +14,10 @@
 
       <footer>
         <slot name="footer" />
-        <button @click="$emit('cancel')" class="pi pi-sort-alt"></button>
+          <button-item icon="pi pi-thumbs-up" />
+          <button-item
+            @click="$emit('cancel')"
+            icon="pi-times-circle" />
       </footer>
 
     </div>
@@ -22,9 +25,15 @@
 </template>
 
 <script>
-export default {
-  name: 'rabarbarModal'
+import ButtonItem from '../shared/ButtonItem.vue'
 
+import 'animate.css'
+
+export default {
+  name: 'rabarbarModal',
+  components: {
+    ButtonItem
+  }
 }
 </script>
 <style scoped>
@@ -60,4 +69,20 @@ export default {
     }
   }
 }
+    .btn {
+      background-color: #9a9a9a;
+      background-image: linear-gradient(0deg, #9a9a9a 0%, #e8fdff 100%);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 20px 40px 0 rgba(107,154,212,.1);
+      transition: .3s;
+      outline: none;
+      margin: 10px;
+      font-size: 1.5rem;
+      color: #637892;
+       &:hover {
+        margin-top: var(--movement);
+       }
+    }
 </style>
